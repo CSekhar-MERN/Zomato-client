@@ -1,0 +1,309 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: Okra, Helvetica, sans-serif;
+}
+.transparent {
+  background-color: transparent;
+}
+
+.red {
+  background-color: red;
+}
+#nav-filter {
+  // background-color: red;
+  width: 100%;
+  position: absolute;
+  top: 0.01%;
+
+ 
+
+  .nav-items {
+    display: flex;
+    height: 20%;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+  }
+
+  .nav-icon img {
+    // height: 2.5rem;
+    // height: 5vh;
+    width: 3vw;
+    border-radius: 25px;
+    // border-radius: 35px;
+    margin: 2px;
+  }
+
+  button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    font-size: 0.9rem;
+    margin: 10px;
+  }
+
+  .nav-btn .btn2 {
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 4px;
+  }
+.user{
+  // border: 1px solid white;
+  font-size: medium;
+}
+  .user img{
+    height: 4vh;
+    // width: 4vw;
+    border-radius: 25px;
+  }
+
+}
+
+
+
+// Section
+// section {
+//   width: 80%;
+//   margin: auto;
+// }
+
+// .maintag {
+
+//   padding-top: 2rem;
+//   padding-bottom: 1rem;
+// }
+
+
+
+
+// .input {
+//   // border: 2px solid red;
+//   display: inline-block;
+//   box-shadow: 4px 4px #eeeded;
+// }
+
+// .input .culsine,
+// .cost,
+// .sort {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// .options h4 {
+//   margin-top: 1rem;
+//   margin-bottom: .5rem
+// }
+
+// .options label {
+//   margin-bottom: 5px;
+// }
+
+// .food-list {
+//   .cards {
+//     display: flex;
+//     position: absolute;
+//     top: 15%;
+//     left: 25%;
+//     width: 60%;
+//     box-shadow: 4px 4px #eeeded;
+//   }
+
+//   .card-img img {
+//     height: 100px;
+//     width: 100px;
+//     border-radius: 20px;
+//     margin: 20px;
+
+//   }
+
+//   .card-name {
+//     margin-top: 25px;
+//     margin-right: 10px;
+//   }
+
+//   hr {
+
+//     position: absolute;
+//     top: 60%;
+//     left: 10px;
+//   }
+
+//   .foodprice {
+//     display: flex;
+//     margin-top: 20%;
+//     margin-left: -100px;
+//     margin-bottom: 30px;
+
+//     p {
+//       color: grey;
+//       margin-right: 50px;
+//     }
+//   }
+
+// }
+
+
+.heading{
+  font-family: Poppins;
+  font-size: 36px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.53;
+  letter-spacing: normal;
+  text-align: left;
+  color: #192f60;
+  margin: 50px 0;
+}
+
+.no-records{
+  color: red;
+  font-size: 35px;
+  font-weight: bold;
+  text-align: center;
+  font-family: cursive;
+}
+.filterPanel{
+  height: 682px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0 ,0 , 0.16);
+  background-color: white;
+  padding: 15px;
+}
+
+.resultsPanel{
+  height: 291px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0 ,0 , 0.16);
+  background-color: white;
+  margin-bottom: 30px;
+}
+
+.filterPanelHeading{
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #192f60;
+}
+
+.filterPanelSubHeading{
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #192f60;
+  margin: 15px 0;
+}
+
+.locationSelection{
+  height: 35px;
+  width: 100%;
+  padding: 8px 16.7px 7px 15px;
+  border-radius: 3px;
+  border: solid 1px #192f60;
+}
+
+.cuisineOption{
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #192f60;
+  margin: 10px;
+}
+
+.upperSection{
+  padding: 20px;
+  padding-bottom: 0;
+}
+
+.lowerSection{
+  padding: 20px;
+  padding-bottom: 0;
+}
+
+.resultsImage{
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
+}
+
+.resultsHeading{
+  font-family: Poppins;
+  font-size: 30px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #192f60;
+}
+
+.resultsSubHeading{
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.88;
+  letter-spacing: normal;
+  text-align: left;
+  color: #192f60;
+}
+
+.resultsAddress{
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.88;
+  letter-spacing: normal;
+  text-align: left;
+  color: #636f88;
+}
+
+.pagination{
+  display: flex;
+  padding-left: 30%;
+}
+
+.paginationButton{
+  border: 1px solid black;
+  height: 30px;
+  width: 30px;
+  margin: 0 10px;
+  text-align: center;
+  border-radius: 5px;
+  padding-top:2px;
+}
+
+@media screen and (max-width: 1220px){
+  .resultsHeading, .resultsSubHeading, .resultsAddress{
+      margin-left: 50px;
+  }
+
+  .lowerSection{
+      padding-top: 0;
+  }
+
+  .lowerSection, .resultsAddress{
+      margin-left: 0;
+      width: 100px;
+  }
+}
