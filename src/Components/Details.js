@@ -45,7 +45,7 @@ function CarouselPage() {
   const [galleryModalIsOpen, setgalleryModalIsOpen] = useState(false);
   const [userModalIsOpen, setuserModalIsOpen] = useState(false);
   const [SubTotal, setSubTotal] = useState(0);
-  const [userEmail, setuserEmail] = useState('')
+  const [userEmail, setuserEmail] = useState("");
   const location = useLocation();
 
   useEffect(() => {
@@ -117,27 +117,25 @@ function CarouselPage() {
     setSubTotal(total);
   };
 
-
-  const handleFormDataChange = async(event, inputData)=>{
-    console.log(event.target.value, inputData)
-    if(inputData == 'userEmail'){
-      await setuserEmail(event.target.value)
-      console.log('Email is in state is : ',userEmail)
+  const handleFormDataChange = async (event, inputData) => {
+    console.log(event.target.value, inputData);
+    if (inputData == "userEmail") {
+      await setuserEmail(event.target.value);
+      console.log("Email is in state is : ", userEmail);
     }
-  }
+  };
 
-  const handlePayment = () =>{
-    if(!userEmail){
-      alert('Please fill this field and then Proceed...')
+  const handlePayment = () => {
+    if (!userEmail) {
+      alert("Please fill this field and then Proceed...");
     } else {
-
     }
-    const data ={
+    const data = {
       amout: SubTotal,
       email: userEmail,
-      mobileNo: '8954123',
-    }
-  }
+      mobileNo: "8954123",
+    };
+  };
 
   return (
     <>
@@ -145,11 +143,13 @@ function CarouselPage() {
       <div className="details">
         <h1>Details Page</h1>
 
-        <Carousel autoPlay showThumbs={false}>
+        <Carousel showArrows={true} showThumbs={false}>
           {restaurantData.thumb &&
-            restaurantData.thumb.map((item, index) => (
-              <div key={index}>
-                <img src={`./${item}`} alt="not Found" />
+            restaurantData.thumb.map((item, index) => {
+              console.log('thum items is : '+item)
+              return (
+              <div>
+                <img src={("./"+ item)} alt="not Found" style={{height:'35vh'}}/>
                 <button
                   className="gallery-button"
                   onClick={() => {
@@ -159,7 +159,23 @@ function CarouselPage() {
                   Click to see Image Gallery{" "}
                 </button>
               </div>
-            ))}
+            )})}
+          {/* <div>
+            <img
+              src="./Assets/breakfast.jpg"
+              alt=""
+              srcset=""
+              style={{ height: "15vh", width: "15vw" }}
+            />
+          </div>
+          <div>
+            <img
+              src="./Assets/breakfast.jpg"
+              alt=""
+              srcset=""
+              style={{ height: "15vh", width: "15vw" }}
+            />
+          </div> */}
         </Carousel>
 
         <Tabs>
@@ -353,22 +369,59 @@ function CarouselPage() {
             <div>{restaurantData.name}</div>
             <div>
               <label>Name :</label> <br />
-              <input type="text" name="name" id="name" style={{width: '400px'}} onChange={(event)=>{handleFormDataChange(event, 'userName')}}/>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                style={{ width: "400px" }}
+                onChange={(event) => {
+                  handleFormDataChange(event, "userName");
+                }}
+              />
             </div>
             <div>
-              <label>Email :</label><br />
-              <input type="email" name="email" id="email" style={{width: '400px'}} onChange={(event)=>{handleFormDataChange(event, 'userEmail')}}/>
+              <label>Email :</label>
+              <br />
+              <input
+                type="email"
+                name="email"
+                id="email"
+                style={{ width: "400px" }}
+                onChange={(event) => {
+                  handleFormDataChange(event, "userEmail");
+                }}
+              />
             </div>
             <div>
-              <label>Address :</label><br />
-              <input type="text" name="address" id="address" style={{width: '400px'}} onChange={(event)=>{handleFormDataChange(event, 'userAddress')}}/>
+              <label>Address :</label>
+              <br />
+              <input
+                type="text"
+                name="address"
+                id="address"
+                style={{ width: "400px" }}
+                onChange={(event) => {
+                  handleFormDataChange(event, "userAddress");
+                }}
+              />
             </div>
             <div>
-              <label>Contact-Number :</label><br />
-              <input type="number" name="number" id="number" style={{width: '400px'}} onChange={(event)=>{handleFormDataChange(event, 'userContact')}}/>
+              <label>Contact-Number :</label>
+              <br />
+              <input
+                type="number"
+                name="number"
+                id="number"
+                style={{ width: "400px" }}
+                onChange={(event) => {
+                  handleFormDataChange(event, "userContact");
+                }}
+              />
             </div>
             <div>
-              <button style={{marginTop: '20px'}} onClick={handlePayment}>Proceed</button>
+              <button style={{ marginTop: "20px" }} onClick={handlePayment}>
+                Proceed
+              </button>
             </div>
           </div>
         </Modal>
