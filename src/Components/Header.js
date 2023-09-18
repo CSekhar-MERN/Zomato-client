@@ -5,8 +5,11 @@ import Modal from "react-modal";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import "../Components/Styles/Filter.css";
+import "../Components/Styles/user-login.css"
 // import "../Components/Styles/home.css";
 // import  { Link } from 'react-router-dom';
+
+
 
 const customStyles = {
   content: {
@@ -18,6 +21,8 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     height: "30vh",
     width: "30vw",
+    backgroundColor: "antiquewhite",
+    border: "1px solid brown",
   },
 };
 
@@ -44,6 +49,14 @@ const Header = () => {
     console.log("Clicked ...");
     setloginModal(true);
   };
+   const handleLogout = () =>{
+    setLoggedInUser(undefined)
+    setisLoggedIn(false)
+   }
+
+   const loginInput =(event)=>{
+    console.log(event.target.value)
+   }
 
   const closeModal = () => {
     setloginModal(false);
@@ -81,30 +94,34 @@ const Header = () => {
               <div className="nav-btn">
                 <button className="user"><img src={loggedInUser.picture} alt="user-pic" /> {loggedInUser.given_name}</button>
                 {/* <button className="btn1">{loggedInUser}</button> */}
-                <button className="btn2">Logout</button>
+                <button className="btn2" onClick={handleLogout}>Logout</button>
               </div>
             )}
           </div>
         </div>
       </header>
-      <Modal isOpen={loginModalIsOpen} style={customStyles}>
+      <Modal isOpen={loginModalIsOpen} style={customStyles} >
+      <div style={{ float: "right", display: "block", cursor: 'pointer' }} onClick={()=>{setloginModal(false)}} > <i class="fa-solid fa-xmark"></i> </div>
+        <div className="login-modal">
         <div>
           <h2>Login</h2>
-          <input type="text" placeholder="Email" />
+          <label>Email: </label>
+          <input type="text" name= 'email' placeholder="Email" className="email" />
           <br />
-          <input type="text" placeholder="Password" />
+          <label>Password: </label>
+          <input type="text" name="password" placeholder="Password" className="pass" />
         </div>
-        <button>Login</button>
-        <button onClick={closeModal}>Cancel</button>
+        <button className="login-btn">Login</button>
+        <button onClick={closeModal}className="cancel-btn">Cancel</button>
 
-        <div>
+        <div className="GoogleLogin">
           <GoogleOAuthProvider clientId="520599718297-1vga48mfuttjatk6np2a3fsh2h5rk3oc.apps.googleusercontent.com">
             <GoogleLogin
               onSuccess={(credentialresponse) => {
                 var decoded = jwt_decode(credentialresponse.credential);
 
                 console.log("Credential response is : ", decoded);
-                setLoggedInUser(decoded);
+                 setLoggedInUser(decoded);
                 console.log('loggedin User is : ', loggedInUser)
                 setisLoggedIn(true);
                 setloginModal(false);
@@ -115,6 +132,7 @@ const Header = () => {
               }}
             />
           </GoogleOAuthProvider>
+        </div>
         </div>
       </Modal>
     </>

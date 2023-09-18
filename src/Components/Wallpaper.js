@@ -4,6 +4,7 @@ import { useNavigate }  from 'react-router-dom'
 import "../Components/Styles/home.css";
 import Header from "./Header";
 // import { response } from "express";
+const API = process.env.REACT_APP_BASE_URL
 
 
 const Wallpaper = () => {
@@ -21,7 +22,7 @@ const Wallpaper = () => {
 
   const fetchLocation = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/locations");
+      const response = await axios.get(`${API}/locations`);
       console.log("API Response: ", response.data);
       setLocations(response.data);
     } catch (error) {
@@ -29,25 +30,13 @@ const Wallpaper = () => {
       console.log("Error details:", error.response);
     }
   };
-
-  // const fetchRestaurant = async () => {
-  //   try {
-  //     const response = await axios.get("http://localhost:5000/restro");
-  //     console.log("API Response: ", response.data);
-  //     setRestaurants(response.data);
-  //   } catch (error) {
-  //     console.error("Error in Fetching Restaurant: ", error);
-  //     console.log("Error Details: ", error.response);
-  //   }
-  // };
-
   const getLocation = async (event) => {
     // console.log(event.target.value)
     const locationId = event.target.value;
     console.log('location id is :', locationId)
     sessionStorage.setItem('locationId', locationId)
     try {
-      const response = await axios.get(`http://localhost:5000/restroByLocation/${locationId}`);
+      const response = await axios.get(`${API}/restroByLocation/${locationId}`);
       console.log("fetched data by location id is : ", response.data.response);
       // setinputId(Array.isArray(response.data) ? response.data : []);
       // console.log("Input Id is ",inputId)

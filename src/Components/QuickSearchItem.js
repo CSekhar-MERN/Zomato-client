@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+const API = process.env.REACT_APP_BASE_URL
 
 function QuickSearchItem() {
   const [mealTypes, setmealTypes] = useState([]);
@@ -12,7 +13,7 @@ function QuickSearchItem() {
 
   const fetchMealType = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/mealtypes`);
+      const response = await axios.get(`${API}/mealtypes`);
       console.log("MealType fetched data is : ", response.data);
       setmealTypes(response.data);
     } catch (error) {

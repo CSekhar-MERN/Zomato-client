@@ -9,6 +9,10 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Modal from "react-modal";
 // import queryString from 'querystring'
+const API = process.env.REACT_APP_BASE_URL;
+
+
+
 
 const customStyles = {
   content: {
@@ -60,10 +64,10 @@ function CarouselPage() {
 
   const getRestro = async () => {
     const response = await axios.get(
-      `http://localhost:5000/restroById/${restaurant}`
+      `${API}/restroById/${restaurant}`
     );
     const menu = await axios.get(
-      `http://localhost:5000/menuItem/${restaurant}`
+      `${API}/menuItem/${restaurant}`
     );
     console.log(response.data);
     setRestaurantData(response.data);
@@ -77,18 +81,6 @@ function CarouselPage() {
     });
     console.log("menu item is in state : ", menuItem);
   };
-  // console.log("Restaurant Data in State is : ", restaurantData);
-
-  // const fetchLocation = async () => {
-  //     try {
-  //       const response = await axios.get("http://localhost:5000/locations");
-  //       console.log("API Response: ", response.data);
-  //       setLocations(response.data);
-  //     } catch (error) {
-  //       console.error("Error in Fetching location: ", error);
-  //       console.log("Error details:", error.response);
-  //     }
-  //   };
 
   const handleOrder = (value) => {
     console.log("order id is : ", value);

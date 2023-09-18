@@ -4,6 +4,7 @@ import "../Components/Styles/Filter.css";
 // import "../Components/Styles/home.css";
 import Header from "./Header";
 import axios from "axios";
+const API = process.env.REACT_APP_BASE_URL
 
 function Filter() {
   const [filterRestro, setfilterRestro] = useState([]);
@@ -35,7 +36,7 @@ function Filter() {
   }, [location]);
 
   const getLocation = async () => {
-    const loc = await axios.get("http://localhost:5000/locations");
+    const loc = await axios.get(`${API}/locations`);
     console.log("This is thhe Location data: ", loc);
     setLocations(loc.data);
   };
@@ -47,19 +48,10 @@ function Filter() {
     console.log(typeof mealtype_id);
 
     try {
-      let apiUrl = `http://localhost:5000/restroByMeal/${mealtype_id}`;
+      let apiUrl = `${API}/restroByMeal/${mealtype_id}`;
       if (locationId) {
-        apiUrl = `http://localhost:5000/restroByMeal&Location/${mealtype_id}/${locationId}`;
+        apiUrl = `${API}/restroByMeal&Location/${mealtype_id}/${locationId}`;
       }
-      // const response = await axios.get(
-      //   `http://localhost:5000/restroByMeal/${mealtype_id}`
-      // );
-
-      // if(locationId){
-      //   const response = await axios.get(
-      //     `http://localhost:5000/restroByMeal&Location/${mealtype_id}/${locationId}`
-      //   )
-      // }
       const response = await axios.get(apiUrl);
       console.log("Filtered restro is : ", response.data.restaurants);
       setfilterRestro(response.data.restaurants);
@@ -75,7 +67,7 @@ function Filter() {
     const selectLocation = event.target.value;
 
     const response = await axios.get(
-      `http://localhost:5000/restroByLocation/${selectLocation}`
+      `${API}/restroByLocation/${selectLocation}`
     );
     console.log("Selected location data restro is : ", response.data);
     setfilterRestro(response.data.response);
@@ -95,7 +87,7 @@ function Filter() {
 
 
     const response = await axios.get(
-      `http://localhost:5000/restroByCuisine/${cuisine}`
+      `${API}/restroByCuisine/${cuisine}`
     );
     console.log("Cuisine restros are: ", response.data.response);
     setfilterRestro(response.data.response);
@@ -104,7 +96,7 @@ function Filter() {
   const handleCostChange = async (lcost, hcost) => {
     console.log("cost sort is ", lcost, hcost);
     const response = await axios.get(
-      `http://localhost:5000/restroByPriceRange/${lcost}/${hcost}`
+      `${API}/restroByPriceRange/${lcost}/${hcost}`
     );
     console.log("Filter by price data is : ", response.data.response);
     setfilterRestro(response.data.response);
@@ -245,15 +237,16 @@ function Filter() {
             </div>
             <div className="col-9 col-sm-12 col-md-8 col-lg-9">
               {filterRestro && filterRestro.length > 0 ? (
-                filterRestro.map((data, index) => {
+              filterRestro.map((data, index) => {
                   return (
-                    <div key={index} className="resultsPanel" onClick={()=>(handleNavigate(data))}>
+                    <div key={index} className="resultsPanel" onClick={()=>(handleNavigate(data))} style={{ cursor: 'pointer', boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)", margin: "0 0 20px 0"  }}>
                       <div className="row upperSection">
                         <div className="col-2">
                           <img
                             src={`./${data.image}`}
                             className="resultsImage"
                             alt=""
+                            width="120" height="120"
                           />
                         </div>
                         <div className="col-10">
