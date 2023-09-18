@@ -12,7 +12,7 @@ function QuickSearchItem() {
 
   const fetchMealType = async () => {
     try {
-      const response = await axios.get(`https://zomato-server-pi.vercel.app/mealtypes`);
+      const response = await axios.get(`http://localhost:5000/mealtypes`);
       console.log("MealType fetched data is : ", response.data);
       setmealTypes(response.data);
     } catch (error) {
