@@ -134,8 +134,18 @@ function CarouselPage() {
       <Header />
       <div className="details">
         <h1>Details Page</h1>
-
-        <Carousel showArrows={true} showThumbs={false}>
+<div className="img-fluid">
+  <img src={restaurantData.image} alt="" />
+  <button
+                  className="gallery-button"
+                  onClick={() => {
+                    setgalleryModalIsOpen(true);
+                  }}
+                >
+                  Click to see Image Gallery{" "}
+                </button>
+</div>
+        {/* <Carousel showArrows={true} showThumbs={false}>
           {restaurantData.thumb &&
             restaurantData.thumb.map((item, index) => {
               console.log('thum items is : '+item)
@@ -152,6 +162,7 @@ function CarouselPage() {
                 </button>
               </div>
             )})}
+            </Carousel> */}
           {/* <div>
             <img
               src="./Assets/breakfast.jpg"
@@ -168,7 +179,6 @@ function CarouselPage() {
               style={{ height: "15vh", width: "15vw" }}
             />
           </div> */}
-        </Carousel>
 
         <Tabs>
           <h1 className="restaurant-name">
@@ -322,31 +332,26 @@ function CarouselPage() {
             </div>
           </div>
         </Modal>
-        <Modal isOpen={galleryModalIsOpen} style={customStyles}>
+        <Modal isOpen={galleryModalIsOpen} style={customStyles} ariaHideApp ={false}>
           <div>
-            <Carousel showThumbs={false} showIndicators={false}>
-              <div>
                 <div
                   style={{ float: "right", display: "block" }}
                   onClick={() => setgalleryModalIsOpen(false)}
                 >
                   <i class="fa-solid fa-xmark"></i>
                 </div>
-
+               
+            <Carousel showThumbs={true} showIndicators={false} dynamicHeight={true} infiniteLoop={true}>
+              
                 {restaurantData &&
-                  restaurantData.thumb &&
-                  restaurantData.thumb.map((item) => {
-                    return (
-                      <div>
-                        {" "}
-                        <img
-                          src={`./${item}`}
-                          style={{ width: "90%", height: "70%" }}
-                        />{" "}
-                      </div>
-                    );
-                  })}
-              </div>
+                  restaurantData.thumb ?
+                  restaurantData.thumb.map((item, id) => {
+
+                    return  <div className="img-fluid" key={id}> <img src={`./${item}`} alt="not Found" />  </div>;
+                     
+                    
+                  }):null}
+              
             </Carousel>
           </div>
         </Modal>

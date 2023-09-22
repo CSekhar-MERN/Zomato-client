@@ -5,6 +5,7 @@
   scroll-behavior: smooth;
   font-family: Okra, Helvetica, sans-serif;
 }
+
 .transparent {
   background-color: transparent;
 }
@@ -12,13 +13,14 @@
 .red {
   background-color: red;
 }
+
 #nav-filter {
   // background-color: red;
   width: 100%;
   position: absolute;
-  top: 0.01%;
+  top: 0;
 
- 
+
 
   .nav-items {
     display: flex;
@@ -31,10 +33,9 @@
   .nav-icon img {
     // height: 2.5rem;
     // height: 5vh;
-    width: 3vw;
-    border-radius: 25px;
-    // border-radius: 35px;
-    margin: 2px;
+    width: 25%;
+    border-radius: 2rem;
+    margin: 1.5%;
   }
 
   button {
@@ -42,19 +43,21 @@
     color: #fff;
     border: none;
     font-size: 0.9rem;
-    margin: 10px;
+    margin: 0.8rem;
   }
 
   .nav-btn .btn2 {
-    border: 2px solid #fff;
-    border-radius: 5px;
-    padding: 4px;
+    border: 1px solid #fff;
+    border-radius: 0.5em;
+    padding: 0.4rem;
   }
-.user{
-  // border: 1px solid white;
-  font-size: medium;
-}
-  .user img{
+
+  .user {
+    // border: 1px solid white;
+    font-size: medium;
+  }
+
+  .user img {
     height: 4vh;
     // width: 4vw;
     border-radius: 25px;
@@ -146,7 +149,7 @@
 // }
 
 
-.heading{
+.heading {
   font-family: Poppins;
   font-size: 36px;
   font-weight: bold;
@@ -159,28 +162,29 @@
   margin: 50px 0;
 }
 
-.no-records{
+.no-records {
   color: red;
   font-size: 35px;
   font-weight: bold;
   text-align: center;
   font-family: cursive;
 }
-.filterPanel{
+
+.filterPanel {
   height: 682px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0 ,0 , 0.16);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: white;
   padding: 15px;
 }
 
-.resultsPanel{
+.resultsPanel {
   height: 291px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0 ,0 , 0.16);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: white;
   margin-bottom: 30px;
 }
 
-.filterPanelHeading{
+.filterPanelHeading {
   font-family: Poppins;
   font-size: 18px;
   font-weight: 600;
@@ -192,7 +196,7 @@
   color: #192f60;
 }
 
-.filterPanelSubHeading{
+.filterPanelSubHeading {
   font-family: Poppins;
   font-size: 14px;
   font-weight: normal;
@@ -205,7 +209,7 @@
   margin: 15px 0;
 }
 
-.locationSelection{
+.locationSelection {
   height: 35px;
   width: 100%;
   padding: 8px 16.7px 7px 15px;
@@ -213,7 +217,7 @@
   border: solid 1px #192f60;
 }
 
-.cuisineOption{
+.cuisineOption {
   font-family: Poppins;
   font-size: 14px;
   font-weight: normal;
@@ -226,23 +230,23 @@
   margin: 10px;
 }
 
-.upperSection{
+.upperSection {
   padding: 20px;
   padding-bottom: 0;
 }
 
-.lowerSection{
+.lowerSection {
   padding: 20px;
   padding-bottom: 0;
 }
 
-.resultsImage{
+.resultsImage {
   width: 120px;
   height: 120px;
   border-radius: 20px;
 }
 
-.resultsHeading{
+.resultsHeading {
   font-family: Poppins;
   font-size: 30px;
   font-weight: 600;
@@ -254,7 +258,7 @@
   color: #192f60;
 }
 
-.resultsSubHeading{
+.resultsSubHeading {
   font-family: Poppins;
   font-size: 16px;
   font-weight: 500;
@@ -266,7 +270,7 @@
   color: #192f60;
 }
 
-.resultsAddress{
+.resultsAddress {
   font-family: Poppins;
   font-size: 16px;
   font-weight: normal;
@@ -278,32 +282,76 @@
   color: #636f88;
 }
 
-.pagination{
+.pagination {
   display: flex;
   padding-left: 30%;
 }
 
-.paginationButton{
+.paginationButton {
   border: 1px solid black;
   height: 30px;
   width: 30px;
   margin: 0 10px;
   text-align: center;
   border-radius: 5px;
-  padding-top:2px;
+  padding-top: 2px;
 }
 
-@media screen and (max-width: 1220px){
-  .resultsHeading, .resultsSubHeading, .resultsAddress{
-      margin-left: 50px;
+@media screen and (max-width: 1220px) {
+
+  .resultsHeading,
+  .resultsSubHeading,
+  .resultsAddress {
+    margin-left: 50px;
   }
 
-  .lowerSection{
-      padding-top: 0;
+  .lowerSection {
+    padding-top: 0;
   }
 
-  .lowerSection, .resultsAddress{
-      margin-left: 0;
-      width: 100px;
+  .lowerSection,
+  .resultsAddress {
+    margin-left: 0;
+    width: 100px;
   }
+}
+
+/* // Mobile Responsiveness */
+
+@media only screen and (max-width: 480px) and (min-width: 320px) {
+  // .nav-btn{
+  //   display: flex;
+  //   border: 2px solid black;
+  //   // padding-right: 10px;
+  //   // width: 5rem;
+
+  // }
+  #nav-filter {
+    .nav-icon {
+      display: none;
+      // width: 20%;
+    }
+    .nav-items{
+      display: flex;
+      justify-content: end;
+    }
+
+    .nav-icon img {
+      height: 2rem;
+      // height: 5vh;
+      width: 2.5rem;
+    }
+
+    button {
+      margin-right: 2px;
+    }
+
+    .nav-btn .btn2 {
+      border: 1px solid #fff;
+      border-radius: 0.5em;
+      padding: 0.3rem;
+      font-size: small;
+    }
+  }
+ 
 }

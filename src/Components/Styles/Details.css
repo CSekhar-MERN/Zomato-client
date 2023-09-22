@@ -17,6 +17,10 @@
   margin-top: 2.5rem;
   font-weight: 600;
 }
+.img-fluid img{
+  height: calc(100vh - 30rem); 
+  width: 100%;
+}
 .carousel .slide img {
   border: 2px solid black;
   height: 60vh;
