@@ -402,7 +402,7 @@ function CarouselPage() {
           </div>
         </Modal>
         <Modal
-          isOpen={galleryModalIsOpen}
+          // isOpen={galleryModalIsOpen}
           style={customStyles}
           ariaHideApp={false}
         >
