@@ -56,7 +56,7 @@ function QuickSearchItem() {
                       <div className="row g-0">
                         <div className="col-md-4">
                           <img
-                            src="./Assets/pizza.jpg"
+                            src={meal.image}
                             className="img-fluid rounded-start"
                             alt="..."
                             style={{ height: "100%" }}
