@@ -202,10 +202,14 @@ const Header = () => {
             </div>
             {!isLoggedIn ? (
               <div className="nav-btn">
-                <button className="btn1" onClick={handleLogin}>
+                {/* <button className="btn1" onClick={handleLogin}> */}
+                <button className="btn1">
+
                   Login
                 </button>
-                <button className="btn2" onClick={CreateAccount}>
+                {/* <button className="btn2" onClick={CreateAccount}> */}
+                <button className="btn2" >
+
                   Create an account
                 </button>
               </div>

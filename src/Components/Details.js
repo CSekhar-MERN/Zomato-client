@@ -11,9 +11,6 @@ import Modal from "react-modal";
 // import queryString from 'querystring'
 const API = process.env.REACT_APP_BASE_URL;
 
-
-
-
 const customStyles = {
   content: {
     top: "50%",
@@ -45,6 +42,7 @@ const menuStyles = {
 function CarouselPage() {
   const [restaurantData, setRestaurantData] = useState([]);
   const [menuItem, setMenuItem] = useState([]);
+  const [content_value, setconten_value] = useState([]);
   const [menumodelIsOpen, setmenumodelIsOpen] = useState(false);
   const [galleryModalIsOpen, setgalleryModalIsOpen] = useState(false);
   const [userModalIsOpen, setuserModalIsOpen] = useState(false);
@@ -63,12 +61,8 @@ function CarouselPage() {
   // console.log(restaurant);
 
   const getRestro = async () => {
-    const response = await axios.get(
-      `${API}/restroById/${restaurant}`
-    );
-    const menu = await axios.get(
-      `${API}/menuItem/${restaurant}`
-    );
+    const response = await axios.get(`${API}/restroById/${restaurant}`);
+    const menu = await axios.get(`${API}/menuItem/${restaurant}`);
     console.log(response.data);
     setRestaurantData(response.data);
     // setMenuItem(menuItem.data)
@@ -80,6 +74,13 @@ function CarouselPage() {
       setMenuItem(item.menu_items);
     });
     console.log("menu item is in state : ", menuItem);
+  };
+
+  const openOverview = () => {
+    setconten_value(1);
+  };
+  const openContact = () => {
+    setconten_value(2);
   };
 
   const handleOrder = (value) => {
@@ -134,17 +135,17 @@ function CarouselPage() {
       <Header />
       <div className="details">
         <h1>Details Page</h1>
-<div className="img-fluid">
-  <img src={restaurantData.image} alt="" />
-  <button
-                  className="gallery-button"
-                  onClick={() => {
-                    setgalleryModalIsOpen(true);
-                  }}
-                >
-                  Click to see Image Gallery{" "}
-                </button>
-</div>
+        <div className="img-fluid">
+          <img src={restaurantData.image} alt="" />
+          <button
+            className="gallery-button"
+            onClick={() => {
+              setgalleryModalIsOpen(true);
+            }}
+          >
+            Click to see Image Gallery{" "}
+          </button>
+        </div>
         {/* <Carousel showArrows={true} showThumbs={false}>
           {restaurantData.thumb &&
             restaurantData.thumb.map((item, index) => {
@@ -163,7 +164,7 @@ function CarouselPage() {
               </div>
             )})}
             </Carousel> */}
-          {/* <div>
+        {/* <div>
             <img
               src="./Assets/breakfast.jpg"
               alt=""
@@ -180,7 +181,7 @@ function CarouselPage() {
             />
           </div> */}
 
-        <Tabs>
+        {/* <Tabs>
           <h1 className="restaurant-name">
             <strong>{restaurantData.name}</strong>
           </h1>
@@ -223,10 +224,79 @@ function CarouselPage() {
             </h3>
             <h5>{restaurantData.locality + ", " + restaurantData.city}</h5>
           </TabPanel>
-        </Tabs>
+        </Tabs> */}
+        <div className="restaurant-name">{restaurantData.name}</div>
+        <button className="order-button" onClick={() => handleOrder(true)}>
+          {" "}
+          Place Online Order
+        </button>
+        <div className="btn-box">
+          <button
+            className="btn-1"
+            style={
+              content_value == 1 ? { color: "#ce0505" } : { color: "black" }
+            }
+            onClick={openOverview}
+          >
+            Overview
+          </button>
+          <button
+            className="btn-2"
+            style={
+              content_value == 2 ? { color: "#ce0505" } : { color: "black" }
+            }
+            onClick={openContact}
+          >
+            Contact
+          </button>
+        </div>
+        <div className="path"></div>
+        <div
+          id="content1"
+          className="content"
+          style={
+            content_value === 1 ? { display: "block" } : { display: "none" }
+          }
+        >
+          <div
+            className="restaurant-name2"
+            style={{ marginTop: "20px", marginBottom: "30px" }}
+          >
+            About this place
+          </div>
+          <div className="cuisine-detail">Cuisine</div>
+          <div className="address" style={{ marginBottom: "30px" }}>
+            {restaurantData.cuisine
+              ? restaurantData.cuisine.map((item) => `${item.name} `)
+              : null}
+          </div>
+          <div className="cuisine-detail">Average Cost</div>
+          <div className="address" style={{ marginBottom: "0px" }}>
+            ₹{restaurantData.min_price} for two people (approx)
+          </div>
+        </div>
+        <div
+          id="content2"
+          className="content"
+          style={
+            content_value === 2 ? { display: "block" } : { display: "none" }
+          }
+        >
+          <div className="phone-number" style={{ marginTop: "30px" }}>
+            Phone Number
+          </div>
+          <div className="number" style={{ marginBottom: "30px" }}>
+            {restaurantData.contact_number}
+          </div>
+          <div className="restaurant-name2">{restaurantData.name}</div>
+          <div className="address" style={{ marginBottom: "50px" }}>
+            {restaurantData.locality + ", " + restaurantData.city}
+          </div>
+        </div>
+
         <Modal isOpen={menumodelIsOpen} style={menuStyles}>
           <div
-            style={{ padding: "7px" }}
+            style={{ padding: "7px" , cursor:'pointer'}}
             className="carousel-button"
             onClick={() => handleOrder(false)}
           >
@@ -321,37 +391,45 @@ function CarouselPage() {
             <div className="Rectangle-3352">
               <span>SubTotal :</span>
               <span className="Subtotal-price">&#8377;{SubTotal}</span>
-              <span
+              {/* <span
                 className="Rectangle-3353"
                 onClick={() => {
                   setuserModalIsOpen(true);
                 }}
-              >
-                Pay Now
-              </span>
+              > */}
+              <span className="Rectangle-3353">Pay Now</span>
             </div>
           </div>
         </Modal>
-        <Modal isOpen={galleryModalIsOpen} style={customStyles} ariaHideApp ={false}>
+        <Modal
+          isOpen={galleryModalIsOpen}
+          style={customStyles}
+          ariaHideApp={false}
+        >
           <div>
-                <div
-                  style={{ float: "right", display: "block" }}
-                  onClick={() => setgalleryModalIsOpen(false)}
-                >
-                  <i class="fa-solid fa-xmark"></i>
-                </div>
-               
-            <Carousel showThumbs={true} showIndicators={false} dynamicHeight={true} infiniteLoop={true}>
-              
-                {restaurantData &&
-                  restaurantData.thumb ?
-                  restaurantData.thumb.map((item, id) => {
+            <div
+              style={{ float: "right", display: "block" }}
+              onClick={() => setgalleryModalIsOpen(false)}
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </div>
 
-                    return  <div className="img-fluid" key={id}> <img src={`./${item}`} alt="not Found" />  </div>;
-                     
-                    
-                  }):null}
-              
+            <Carousel
+              showThumbs={true}
+              showIndicators={false}
+              dynamicHeight={true}
+              infiniteLoop={true}
+            >
+              {restaurantData && restaurantData.thumb
+                ? restaurantData.thumb.map((item, id) => {
+                    return (
+                      <div className="img-fluid" key={id}>
+                        {" "}
+                        <img src={`./${item}`} alt="not Found" />{" "}
+                      </div>
+                    );
+                  })
+                : null}
             </Carousel>
           </div>
         </Modal>

@@ -17,6 +17,81 @@
   margin-top: 2.5rem;
   font-weight: 600;
 }
+
+.phone-number {
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #192f60;
+}
+.number {
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #f67082;
+}
+.restaurant-name2 {
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #192f60;
+}
+.address {
+  width: 350px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: normal;
+  text-align: left;
+  color: #636f88;
+}
+.cuisine-detail {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #192f60;
+}
+.btn-box button {
+  border: none;
+  background: transparent;
+  margin: 59px 76px 15px 0;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+}
+.content {
+  position: absolute;
+}
+
+
 .img-fluid img{
   height: calc(100vh - 30rem); 
   width: 100%;
@@ -258,4 +333,65 @@
   float: right;
   margin-top: -64px;
   margin-right: 10px;
+}
+
+/* Mobile Responsiveness */
+
+@media screen and (max-width: 768px) {
+  div.restaurant-name {
+    font-size: 20px;
+  }
+  img.detail-img {
+    height: 191px;
+  }
+  button.gallery-button {
+    padding: 10px 14px 9px 15px;
+    font-size: 13px;
+  }
+  button.order-button {
+    padding: 10px 15px 10px 16px;
+    font-size: 14px;
+    margin-top: 40px;
+  }
+  div.btn-box button {
+    font-size: 14px;
+  }
+  div.restaurant-name2 {
+    font-size: 16px;
+  }
+  div.cuisine-detail {
+    font-size: 14px;
+  }
+  div.address {
+    font-size: 14px;
+  }
+  div.phone-number {
+    font-size: 14px;
+  }
+  div.number {
+    font-size: 14px;
+  }
+  button.carousel-closebutton {
+    position: absolute;
+    right: 1%;
+    top: 10%;
+  }
+  div.menu-content{
+    width: 290px;
+  }
+}
+@media screen and (max-width: 465px) {
+  div.btn-box button {
+    margin-right: 50px;
+  }
+  button.carousel-closebutton {
+    position: absolute;
+    right: 1%;
+    top: 15%;
+  }
+}
+@media screen and (max-width: 413px) {
+  div.btn-box button {
+    margin-right: 20px;
+  }
 }
