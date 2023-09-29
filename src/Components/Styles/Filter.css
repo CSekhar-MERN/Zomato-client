@@ -233,6 +233,7 @@
   }
   .filterPanel {
     width: 85vw;
+    height: auto;
     margin-bottom: 2rem;
   }
   .resultsPanel {
