@@ -199,13 +199,13 @@
   padding-top: 2px;
 }
 
+/* // Mobile Responsiveness */
 @media screen and (max-width: 1220px) {
   .resultname {
     width: auto;
     margin-left: 4rem;
   }
 }
-/* // Mobile Responsiveness */
 @media only screen and (max-width: 480px) and (min-width: 320px) {
   #nav-filter .nav-icon {
     display: none;
