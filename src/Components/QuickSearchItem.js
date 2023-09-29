@@ -23,13 +23,13 @@ function QuickSearchItem() {
   };
 
   const navigate = useNavigate();
-  const handleNavigation = (id) => {
+  const handleNavigation = (id, name) => {
     const locationId = sessionStorage.getItem("locationId");
     console.log('This is location id : ',locationId)
     if (locationId) {
-      navigate(`/filter?mealtype=${id}&location=${locationId}`);
+      navigate(`/filter?mealtype=${id}&mealname=${name}&location=${locationId}`);
     } else {
-      navigate(`/filter?mealtype=${id}`);
+      navigate(`/filter?mealtype=${id}&mealname=${name}`);
     }
     console.log("Navigation executed!", id);
   };
@@ -45,13 +45,13 @@ function QuickSearchItem() {
                   className="col-lg-4 col-md-6 col-sm-12"
                   key={meal.id}
                   onClick={() => {
-                    handleNavigation(meal.meal_type);
-                  }}
+                    handleNavigation(meal.meal_type, meal.name);
+                  }} 
                 >
                   <div className="p-3">
                     <div
                       className="card mb-3"
-                      style={{ maxWidth: "540px", maxHeight: "540px" }}
+                      style={{ maxWidth: "540px", maxHeight: "540px", boxShadow: '0px 0px 10px #888888' }}
                     >
                       <div className="row g-0">
                         <div className="col-md-4">

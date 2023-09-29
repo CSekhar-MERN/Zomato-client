@@ -200,18 +200,9 @@
 }
 
 @media screen and (max-width: 1220px) {
-  .resultsHeading,
-  .resultsSubHeading,
-  .resultsAddress {
-    margin-left: 50px;
-  }
-  .lowerSection {
-    padding-top: 0;
-  }
-  .lowerSection,
-  .resultsAddress {
-    margin-left: 0;
-    width: 100px;
+  .resultname {
+    width: auto;
+    margin-left: 4rem;
   }
 }
 /* // Mobile Responsiveness */
@@ -235,5 +226,50 @@
     border-radius: 0.5em;
     padding: 0.3rem;
     font-size: small;
+  }
+  .filter-box {
+    display: flex;
+    flex-direction: column;
+  }
+  .filterPanel {
+    width: 85vw;
+    margin-bottom: 2rem;
+  }
+  .resultsPanel {
+    width: 85vw;
+  }
+  .resultsPanel img {
+    height: 10vh;
+    width: 20vw;
+  }
+  .resultsHeading {
+    font-size: 1.4rem;
+    margin-left: 0;
+  }
+  .resultsSubHeading {
+    margin-left: 0;
+    display: inline-block;
+  }
+  .resultsAddress {
+    margin-left: 10px;
+    width: 100px;
+    display: inline-block;
+  }
+  .resultname {
+    width: auto;
+    margin-left: 7rem;
+    margin-top: -90px;
+  }
+  .lowerSection {
+    width: 100%;
+  }
+  .lowerSection .col-10 {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: 2.5rem;
+  }
+  .lowerSection .resultsAddress {
+    margin-left: 0;
   }
 }/*# sourceMappingURL=Filter.css.map */

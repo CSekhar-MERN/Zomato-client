@@ -8,6 +8,7 @@ const API = process.env.REACT_APP_BASE_URL
 
 function Filter() {
   const [filterRestro, setfilterRestro] = useState([]);
+  const [mealtypeName, setmealtypeName] = useState(undefined);
   const [filteredData, setfilteredData] = useState([])
   const [locations, setLocations] = useState([]);
   const [cuisine, setcuisine] = useState([]);
@@ -18,9 +19,10 @@ function Filter() {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     console.log("queryparams is : ", queryParams);
+    const mealname = queryParams.get("mealname");
     const mealtypeValue = queryParams.get("mealtype");
     const locationId = queryParams.get("location");
-
+    setmealtypeName(mealname)
     console.log("mealtypevalue is : ", mealtypeValue, locationId);
     console.log("from useeffect check mealtypevalue", typeof mealtypeValue);
 
@@ -75,22 +77,43 @@ function Filter() {
   };
 
   const handleCuisine = async (cuisineId) => {
-    const index = cuisine.indexOf(cuisineId);
-    console.log('indexof cuisine is ', index)
+    // const index = cuisine.indexOf(cuisineId);
+    // console.log('indexof cuisine is ', index)
 
-    if (index == -1) {
-      cuisine.push(cuisineId);
-    } else {
-      cuisine.splice(index, 1);
-    }
-    console.log("Htis is cuisine", cuisine);
+    // if (index == -1) {
+    //   cuisine.push(cuisineId);
+    // } else {
+    //   cuisine.splice(index, 1);
+    // }
+    // console.log("Htis is cuisine", cuisine);
 
 
-    const response = await axios.get(
-      `${API}/restroByCuisine/${cuisine}`
-    );
-    console.log("Cuisine restros are: ", response.data.response);
-    setfilterRestro(response.data.response);
+    // const response = await axios.get(
+    //   `${API}/restroByCuisine/${cuisine}`
+    // );
+    // console.log("Cuisine restros are: ", response.data.response);
+    // setfilterRestro(response.data.response);
+    setcuisine(cuisineId);
+    
+    if(!locations){
+    axios
+    .get(`${API}/restroByCuisine/${cuisineId}`)
+    .then((response)=>{
+      setfilterRestro(response.data.response)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+    }else{
+      axios
+      .get(`${API}/restroByCuisine/${cuisineId}`)
+      .then((response)=>{
+      setfilterRestro(response.data.response)
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+      }
   };
 
   const handleCostChange = async (lcost, hcost) => {
@@ -124,8 +147,8 @@ function Filter() {
       <Header />
       <section className="main">
         <div className="container">
-          <div className="row heading">Breakfast places in Mumbai</div>
-          <div className="row">
+          <div className="row heading">{mealtypeName} places in Mumbai</div>
+          <div className="row filter-box">
             <div className="col-3 col-sm-12 col-md-4 col-lg-3">
               <div className="filterPanel">
                 <div className="filterPanelHeading">Filters</div>
@@ -142,35 +165,39 @@ function Filter() {
                 </select>
                 <div className="filterPanelSubHeading">Cuisine</div>
                 <input
-                  type="checkbox"
+                  type="radio"
+                  name="cuisine"
                   className="cuisineOption"
                   onChange={() => handleCuisine(1)}
                 />
                 <label>North Indian</label>
                 <br />
                 <input
-                  type="checkbox"
-                  className="cuisineOption"
+                  type="radio"
+                  name="cuisine"                  className="cuisineOption"
                   onChange={() => handleCuisine(2)}
                 />
                 <label>South Indian</label>
                 <br />
                 <input
-                  type="checkbox"
+                  type="radio"
+                  name="cuisine"
                   className="cuisineOption"
                   onChange={() => handleCuisine(3)}
                 />
                 <label>Chinese</label>
                 <br />
                 <input
-                  type="checkbox"
+                  type="radio"
+                  name="cuisine"
                   className="cuisineOption"
                   onChange={() => handleCuisine(4)}
                 />
                 <label>Fast Food</label>
                 <br />
                 <input
-                  type="checkbox"
+                  type="radio"
+                  name="cuisine"
                   className="cuisineOption"
                   onChange={() => handleCuisine(5)}
                 />
@@ -239,7 +266,7 @@ function Filter() {
               {filterRestro && filterRestro.length > 0 ? (
               filterRestro.map((data, index) => {
                   return (
-                    <div key={index} className="resultsPanel" onClick={()=>(handleNavigate(data))} style={{ cursor: 'pointer', boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)", margin: "0 0 20px 0"  }}>
+                    <div key={index} className="resultsPanel" onClick={()=>(handleNavigate(data))} style={{ cursor: 'pointer', boxShadow: '0px 0px 10px #888888' , margin: "0 0 20px 0"  }}>
                       <div className="row upperSection">
                         <div className="col-2">
                           <img
@@ -249,7 +276,7 @@ function Filter() {
                             width="120" height="120"
                           />
                         </div>
-                        <div className="col-10">
+                        <div className="col-10 resultname">
                           <div className="resultsHeading">{data.name}</div>
                           <div className="resultsSubHeading">
                             {data.locality}
@@ -281,7 +308,7 @@ function Filter() {
                 <div className="no-records">No Records Found...</div>
               )}
             </div>
-            {filterRestro && filterRestro.length > 0 ? (
+            {/* {filterRestro && filterRestro.length > 0 ? (
               <div className="pagination">
                 <a href="#" className="paginationButton">
                   1
@@ -302,7 +329,7 @@ function Filter() {
                   6
                 </a>
               </div>
-            ) : null}
+            ) : null} */}
           </div>
         </div>
       </section>
