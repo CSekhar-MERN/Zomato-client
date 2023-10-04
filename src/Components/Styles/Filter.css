@@ -263,12 +263,11 @@
   }
   .lowerSection {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
   .lowerSection .col-10 {
-    display: flex;
-    flex-direction: column;
     width: 60%;
-    margin-left: 2.5rem;
   }
   .lowerSection .resultsAddress {
     margin-left: 0;

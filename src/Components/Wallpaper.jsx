@@ -22,36 +22,36 @@ const Wallpaper = () => {
   const fetchLocation = async () => {
     try {
       const response = await axios.get(`${API}/locations`);
-      console.log("API Response: ", response.data);
+      //console.log("API Response: ", response.data);
       setLocations(response.data);
     } catch (error) {
       console.error("Error in Fetching location: ", error);
-      console.log("Error details:", error.response);
+      //console.log("Error details:", error.response);
     }
   };
   const getLocation = async (event) => {
     // console.log(event.target.value)
     const locationId = event.target.value;
-    console.log("location id is :", locationId);
+    //console.log("location id is :", locationId);
     sessionStorage.setItem("locationId", locationId);
     try {
       const response = await axios.get(`${API}/restroByLocation/${locationId}`);
-      console.log("fetched data by location id is : ", response.data.response);
+      //console.log("fetched data by location id is : ", response.data.response);
       // setinputId(Array.isArray(response.data) ? response.data : []);
       // console.log("Input Id is ",inputId)
       // setRestaurants(Array.isArray(response?.data) ? response?.data?.response : []);
       setRestaurants(response.data.response);
-      console.log("Restaurants fetched by locationID is ", Restaurants);
+      //console.log("Restaurants fetched by locationID is ", Restaurants);
     } catch (error) {
-      console.log("Error is in locaiton ID is : ", error);
+      //console.log("Error is in locaiton ID is : ", error);
       setRestaurants([]); // Reset Restaurants to an empty array in case of error
     }
   };
 
-  console.log("Restaurants fetched by locationID is out ", Restaurants);
+  //console.log("Restaurants fetched by locationID is out ", Restaurants);
   const handleChange = (event) => {
     let inputText = event.target.value;
-    console.log("Input text is : ", inputText);
+    //console.log("Input text is : ", inputText);
     //  setinputId(inputText)
     const suggestions = Restaurants.filter((item) =>
       item.name.toLowerCase().includes(inputText.toLowerCase())
@@ -60,8 +60,8 @@ const Wallpaper = () => {
     setsuggestions(suggestions);
   };
 
-  console.log("inputID is : ", inputId);
-  console.log("Suggestions is : ", suggestions);
+  //console.log("inputID is : ", inputId);
+  //console.log("Suggestions is : ", suggestions);
 
   const showSuggestions = () => {
     if (suggestions.length == 0 && inputId == undefined) {
@@ -91,7 +91,7 @@ const Wallpaper = () => {
   };
 
   const selectingRestaurant = (item) => {
-    console.log("selected restaurant is : ", item);
+    //console.log("selected restaurant is : ", item);
     navigate(`/details?restaurant=${item._id}`);
   };
 
@@ -104,8 +104,7 @@ const Wallpaper = () => {
 
       <div className="center-label ">
         <div className="logo">
-
-        <img src="./Assets/icon.jpg" alt="" />
+          <img src="./Assets/icon.jpg" alt="" />
         </div>
 
         <h2 style={{ color: "#fff" }} className="h2">
@@ -120,6 +119,7 @@ const Wallpaper = () => {
               className="form-select"
               aria-label="Default select example"
               onChange={(event) => getLocation(event)}
+              style={{ cursor: "pointer" }}
             >
               <option value="0">Select</option>
               {locations.map((location, index) => {
@@ -150,6 +150,7 @@ const Wallpaper = () => {
                   aria-label="Username"
                   aria-describedby="basic-addon1"
                   onChange={handleChange}
+                  style={{ cursor: "pointer" }}
                 />
               </div>
               <div className="suggestions">{showSuggestions()}</div>

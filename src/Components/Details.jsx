@@ -63,17 +63,17 @@ function CarouselPage() {
   const getRestro = async () => {
     const response = await axios.get(`${API}/restroById/${restaurant}`);
     const menu = await axios.get(`${API}/menuItem/${restaurant}`);
-    console.log(response.data);
+    //console.log(response.data);
     setRestaurantData(response.data);
     // setMenuItem(menuItem.data)
 
     const findData = menu.data;
 
     findData.map((item) => {
-      console.log("menu-item is : ", item.menu_items);
+      //console.log("menu-item is : ", item.menu_items);
       setMenuItem(item.menu_items);
     });
-    console.log("menu item is in state : ", menuItem);
+    //console.log("menu item is in state : ", menuItem);
   };
 
   const openOverview = () => {
@@ -84,26 +84,26 @@ function CarouselPage() {
   };
 
   const handleOrder = (value) => {
-    console.log("order id is : ", value);
+    //console.log("order id is : ", value);
     setmenumodelIsOpen(value);
-    console.log("menu item is : ", menuItem);
+    //console.log("menu item is : ", menuItem);
   };
 
   const addItems = (index, operationType) => {
     let total = 0;
     const items = [...menuItem];
     const item = items[index];
-    console.log("index of item is : ", index);
+    //console.log("index of item is : ", index);
 
     if (operationType == "add") {
-      console.log("add", item);
+      //console.log("add", item);
       item.qty += 1;
     } else {
       item.qty -= 1;
     }
     items[index] = item;
     items.map((item) => {
-      console.log("item qty is : ", item);
+      //console.log("item qty is : ", item);
       total += item.qty * item.price;
     });
     setMenuItem(items);
@@ -111,10 +111,10 @@ function CarouselPage() {
   };
 
   const handleFormDataChange = async (event, inputData) => {
-    console.log(event.target.value, inputData);
+    //console.log(event.target.value, inputData);
     if (inputData == "userEmail") {
       await setuserEmail(event.target.value);
-      console.log("Email is in state is : ", userEmail);
+      //console.log("Email is in state is : ", userEmail);
     }
   };
 
@@ -149,7 +149,7 @@ function CarouselPage() {
         {/* <Carousel showArrows={true} showThumbs={false}>
           {restaurantData.thumb &&
             restaurantData.thumb.map((item, index) => {
-              console.log('thum items is : '+item)
+              //console.log('thum items is : '+item)
               return (
               <div>
                 <img src={("./"+ item)} alt="not Found" style={{height:'35vh'}}/>
@@ -401,6 +401,8 @@ function CarouselPage() {
             </div>
           </div>
         </Modal>
+
+        
         <Modal
           // isOpen={galleryModalIsOpen}
           style={customStyles}

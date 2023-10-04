@@ -4,27 +4,27 @@ import "../Components/Styles/Filter.css";
 // import "../Components/Styles/home.css";
 import Header from "./Header";
 import axios from "axios";
-const API = process.env.REACT_APP_BASE_URL
+const API = process.env.REACT_APP_BASE_URL;
 
 function Filter() {
   const [filterRestro, setfilterRestro] = useState([]);
   const [mealtypeName, setmealtypeName] = useState(undefined);
-  const [filteredData, setfilteredData] = useState([])
+  const [filteredData, setfilteredData] = useState([]);
   const [locations, setLocations] = useState([]);
   const [cuisine, setcuisine] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
+  //console.log(location);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    console.log("queryparams is : ", queryParams);
+    //console.log("queryparams is : ", queryParams);
     const mealname = queryParams.get("mealname");
     const mealtypeValue = queryParams.get("mealtype");
     const locationId = queryParams.get("location");
-    setmealtypeName(mealname)
-    console.log("mealtypevalue is : ", mealtypeValue, locationId);
-    console.log("from useeffect check mealtypevalue", typeof mealtypeValue);
+    setmealtypeName(mealname);
+    //console.log("mealtypevalue is : ", mealtypeValue, locationId);
+    //console.log("from useeffect check mealtypevalue", typeof mealtypeValue);
 
     if (mealtypeValue !== null) {
       if (locationId !== null) {
@@ -39,15 +39,15 @@ function Filter() {
 
   const getLocation = async () => {
     const loc = await axios.get(`${API}/locations`);
-    console.log("This is thhe Location data: ", loc);
+    //console.log("This is thhe Location data: ", loc);
     setLocations(loc.data);
   };
 
   const FilterRestro = async (mealtype_id, locationId) => {
     // const mealtype_id = Number(paramValue)
-    console.log("mealtype_id is : ", mealtype_id);
-    console.log("location_id is : ", locationId);
-    console.log(typeof mealtype_id);
+    //console.log("mealtype_id is : ", mealtype_id);
+    //console.log("location_id is : ", locationId);
+    //console.log(typeof mealtype_id);
 
     try {
       let apiUrl = `${API}/restroByMeal/${mealtype_id}`;
@@ -55,15 +55,15 @@ function Filter() {
         apiUrl = `${API}/restroByMeal&Location/${mealtype_id}/${locationId}`;
       }
       const response = await axios.get(apiUrl);
-      console.log("Filtered restro is : ", response.data.restaurants);
+      //console.log("Filtered restro is : ", response.data.restaurants);
       setfilterRestro(response.data.restaurants);
-      setfilteredData(response.data.restaurants)
+      setfilteredData(response.data.restaurants);
     } catch (error) {
-      console.log("Error in fetching Filter restaurant api : ", error);
+      //console.log("Error in fetching Filter restaurant api : ", error);
     }
   };
 
-  console.log("Location data state: ", locations);
+  //console.log("Location data state: ", locations);
 
   const handleLocation = async (event) => {
     const selectLocation = event.target.value;
@@ -71,7 +71,7 @@ function Filter() {
     const response = await axios.get(
       `${API}/restroByLocation/${selectLocation}`
     );
-    console.log("Selected location data restro is : ", response.data);
+    //console.log("Selected location data restro is : ", response.data);
     setfilterRestro(response.data.response);
     // console.log('selected location is : ',selectLocation)
   };
@@ -87,60 +87,63 @@ function Filter() {
     // }
     // console.log("Htis is cuisine", cuisine);
 
-
     // const response = await axios.get(
     //   `${API}/restroByCuisine/${cuisine}`
     // );
     // console.log("Cuisine restros are: ", response.data.response);
     // setfilterRestro(response.data.response);
     setcuisine(cuisineId);
-    
-    if(!locations){
-    axios
-    .get(`${API}/restroByCuisine/${cuisineId}`)
-    .then((response)=>{
-      setfilterRestro(response.data.response)
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-    }else{
+
+    if (!locations) {
       axios
-      .get(`${API}/restroByCuisine/${cuisineId}`)
-      .then((response)=>{
-      setfilterRestro(response.data.response)
-      })
-      .catch((error)=>{
-        console.log(error)
-      })
-      }
+        .get(`${API}/restroByCuisine/${cuisineId}`)
+        .then((response) => {
+          setfilterRestro(response.data.response);
+        })
+        .catch((error) => {
+          //console.log(error);
+        });
+    } else {
+      axios
+        .get(`${API}/restroByCuisine/${cuisineId}`)
+        .then((response) => {
+          setfilterRestro(response.data.response);
+        })
+        .catch((error) => {
+          //console.log(error);
+        });
+    }
   };
 
   const handleCostChange = async (lcost, hcost) => {
-    console.log("cost sort is ", lcost, hcost);
+    //console.log("cost sort is ", lcost, hcost);
     const response = await axios.get(
       `${API}/restroByPriceRange/${lcost}/${hcost}`
     );
-    console.log("Filter by price data is : ", response.data.response);
+    //console.log("Filter by price data is : ", response.data.response);
     setfilterRestro(response.data.response);
   };
 
   const handleSortChange = (event) => {
     const sortType = event.target.value;
-  
+
     if (sortType === "lowToHigh") {
-      const sortedRestaurants = filterRestro.slice().sort((a, b) => a.min_price - b.min_price);
+      const sortedRestaurants = filterRestro
+        .slice()
+        .sort((a, b) => a.min_price - b.min_price);
       setfilterRestro(sortedRestaurants);
     } else if (sortType === "highToLow") {
-      const sortedRestaurants = filterRestro.slice().sort((a, b) => b.min_price - a.min_price);
+      const sortedRestaurants = filterRestro
+        .slice()
+        .sort((a, b) => b.min_price - a.min_price);
       setfilterRestro(sortedRestaurants);
     }
   };
-  
-  const handleNavigate = (data) =>{
-    console.log('Item Clicked ....!', data._id)
-    navigate(`/details?restaurant=${data._id}`)
-  }
+
+  const handleNavigate = (data) => {
+    //console.log("Item Clicked ....!", data._id);
+    navigate(`/details?restaurant=${data._id}`);
+  };
 
   return (
     <>
@@ -153,7 +156,11 @@ function Filter() {
               <div className="filterPanel">
                 <div className="filterPanelHeading">Filters</div>
                 <div className="filterPanelSubHeading">Select Location</div>
-                <select className="locationSelection" onChange={handleLocation}>
+                <select
+                  className="locationSelection"
+                  onChange={handleLocation}
+                  style={{ cursor: "pointer" }}
+                >
                   <option value="0">Select</option>
                   {locations.map((item, index) => {
                     return (
@@ -169,13 +176,16 @@ function Filter() {
                   name="cuisine"
                   className="cuisineOption"
                   onChange={() => handleCuisine(1)}
+                  style={{ cursor: "pointer" }}
                 />
                 <label>North Indian</label>
                 <br />
                 <input
                   type="radio"
-                  name="cuisine"                  className="cuisineOption"
+                  name="cuisine"
+                  className="cuisineOption"
                   onChange={() => handleCuisine(2)}
+                  style={{ cursor: "pointer" }}
                 />
                 <label>South Indian</label>
                 <br />
@@ -184,6 +194,7 @@ function Filter() {
                   name="cuisine"
                   className="cuisineOption"
                   onChange={() => handleCuisine(3)}
+                  style={{ cursor: "pointer" }}
                 />
                 <label>Chinese</label>
                 <br />
@@ -192,6 +203,7 @@ function Filter() {
                   name="cuisine"
                   className="cuisineOption"
                   onChange={() => handleCuisine(4)}
+                  style={{ cursor: "pointer" }}
                 />
                 <label>Fast Food</label>
                 <br />
@@ -200,6 +212,7 @@ function Filter() {
                   name="cuisine"
                   className="cuisineOption"
                   onChange={() => handleCuisine(5)}
+                  style={{ cursor: "pointer" }}
                 />
                 <label>Street Food</label>
                 <br />
@@ -211,6 +224,7 @@ function Filter() {
                   onChange={() => {
                     handleCostChange(1, 500);
                   }}
+                  style={{ cursor: "pointer" }}
                 />
                 <label>Less than &#8377;500</label>
                 <br />
@@ -221,6 +235,7 @@ function Filter() {
                   onChange={() => {
                     handleCostChange(500, 1000);
                   }}
+                  style={{ cursor: "pointer" }}
                 />
                 <label>&#8377;500 to &#8377;1000</label>
                 <br />
@@ -231,6 +246,7 @@ function Filter() {
                   onChange={() => {
                     handleCostChange(1000, 1500);
                   }}
+                  style={{ cursor: "pointer" }}
                 />
                 <label>&#8377;1000 to &#8377;1500</label>
                 <br />
@@ -241,6 +257,7 @@ function Filter() {
                   onChange={() => {
                     handleCostChange(1500, 2000);
                   }}
+                  style={{ cursor: "pointer" }}
                 />
                 <label>&#8377;1500 to &#8377;2000</label>
                 <br />
@@ -251,35 +268,60 @@ function Filter() {
                   onChange={() => {
                     handleCostChange(2000, 50000);
                   }}
+                  style={{ cursor: "pointer" }}
                 />
                 <label>&#8377;2000+</label>
                 <br />
                 <div className="filterPanelSubHeading">Sort</div>
-                <input type="radio" className="cuisineOption" name="price" value="lowToHigh" onChange={handleSortChange}/>
+                <input
+                  type="radio"
+                  className="cuisineOption"
+                  name="price"
+                  value="lowToHigh"
+                  onChange={handleSortChange}
+                  style={{ cursor: "pointer" }}
+                />
                 <label>Price low to high</label>
                 <br />
-                <input type="radio" className="cuisineOption" name="price" value="highToLow" onChange={handleSortChange}/>
+                <input
+                  type="radio"
+                  className="cuisineOption"
+                  name="price"
+                  value="highToLow"
+                  onChange={handleSortChange}
+                  style={{ cursor: "pointer" }}
+                />
                 <label>Price high to low</label>
               </div>
             </div>
             <div className="col-9 col-sm-12 col-md-8 col-lg-9">
               {filterRestro && filterRestro.length > 0 ? (
-              filterRestro.map((data, index) => {
+                filterRestro.map((data, index) => {
                   return (
-                    <div key={index} className="resultsPanel" onClick={()=>(handleNavigate(data))} style={{ cursor: 'pointer', boxShadow: '0px 0px 10px #888888' , margin: "0 0 20px 0"  }}>
+                    <div
+                      key={index}
+                      className="resultsPanel"
+                      onClick={() => handleNavigate(data)}
+                      style={{
+                        cursor: "pointer",
+                        boxShadow: "0px 0px 10px #888888",
+                        margin: "0 0 20px 0",
+                      }}
+                    >
                       <div className="row upperSection">
                         <div className="col-2">
                           <img
                             src={`./${data.image}`}
                             className="resultsImage"
                             alt=""
-                            width="120" height="120"
+                            width="120"
+                            height="120"
                           />
                         </div>
                         <div className="col-10 resultname">
                           <div className="resultsHeading">{data.name}</div>
                           <div className="resultsSubHeading">
-                            {data.locality}
+                            {data.locality},
                           </div>
                           <div className="resultsAddress">{data.city}</div>
                         </div>

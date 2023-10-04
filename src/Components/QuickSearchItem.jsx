@@ -14,24 +14,24 @@ function QuickSearchItem() {
   const fetchMealType = async () => {
     try {
       const response = await axios.get(`${API}/mealtypes`);
-      console.log("MealType fetched data is : ", response.data);
+      //console.log("MealType fetched data is : ", response.data);
       setmealTypes(response.data);
     } catch (error) {
-      console.log("Error in fetching MealType Data : ", error);
-      console.log("Error details:", error.response);
+      //console.log("Error in fetching MealType Data : ", error);
+      //console.log("Error details:", error.response);
     }
   };
 
   const navigate = useNavigate();
   const handleNavigation = (id, name) => {
     const locationId = sessionStorage.getItem("locationId");
-    console.log('This is location id : ',locationId)
+    //console.log('This is location id : ',locationId)
     if (locationId) {
       navigate(`/filter?mealtype=${id}&mealname=${name}&location=${locationId}`);
     } else {
       navigate(`/filter?mealtype=${id}&mealname=${name}`);
     }
-    console.log("Navigation executed!", id);
+    //console.log("Navigation executed!", id);
   };
 
   return (
@@ -46,7 +46,8 @@ function QuickSearchItem() {
                   key={meal.id}
                   onClick={() => {
                     handleNavigation(meal.meal_type, meal.name);
-                  }} 
+                  }}
+                  style={{cursor:'pointer'}} 
                 >
                   <div className="p-3">
                     <div

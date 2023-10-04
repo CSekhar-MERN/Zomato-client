@@ -381,13 +381,14 @@
   .lowerSection{
     // border: 2px solid;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
   .lowerSection .col-10{
     // border: 2px solid;
-    display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     width: 60%;
-    margin-left: 2.5rem;
+    // margin-left: 3em;
   }
   .lowerSection .resultsAddress{
     margin-left: 0;
