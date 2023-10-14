@@ -14,7 +14,6 @@ body {
 body::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
 }
-/* Hide scrollbar for IE, Edge and Firefox */
 
 .nav {
   /* border: 2px solid red;  */
@@ -24,8 +23,6 @@ body::-webkit-scrollbar {
   width: 80%;
   margin: auto;
   justify-content: end;
-  /* text-align: center; */
-  /* z-index: 2; */
 }
 
 .login,
@@ -53,24 +50,20 @@ body::-webkit-scrollbar {
 }
 
 .center-label {
-  position: absolute;
-  /* border: 2px solid black; */
-  top: 35%;
-  left: 45rem;
-  /* margin-bottom: 20px; */
+  /* Adjusted CSS */
+  position: relative;
+  top: 50%;
+  transform: translateY(-190%);
 }
 
 .center-label .logo img {
   height: 3rem;
   width: 3rem;
   border-radius: 2rem;
-  margin-left: 14rem;
-}
 
-.main {
-  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
 }
-
 .feature {
   width: 80%;
   margin: auto;
@@ -100,8 +93,6 @@ li {
 }
 
 ul {
-  /* z-index: 1; */
-
   margin: 0;
   margin-left: auto;
   padding: 0;
@@ -121,44 +112,22 @@ li .suggestion-image {
 }
 
 /* // Mobile Responsiveness */
-@media (max-width: 1440px) {
-  .center-label {
-    position: absolute;
-    /* border: 2px solid black; */
-    top: 20%;
-    left: 32rem;
-    /* margin-left: 50%; */
+
+@media only screen and (min-width: 1000px) {
+  .input-boxes {
+    display: flex;
+    justify-content: space-between;
+    /* width: 17rem; */
+  }
+
+  .input-boxes .mb-3 {
+    margin-left: 2em;
   }
 }
 
-@media (max-width: 1024px) {
+@media only screen and (max-width: 760px) and (min-width: 320px) {
   .center-label {
-    position: absolute;
-    /* border: 2px solid black; */
-    top: 20%;
-    left: 20rem;
-    /* margin-left: 50%; */
-  }
-}
-
-@media (max-width: 768px) {
-  .center-label {
-    position: absolute;
-    /* border: 2px solid black; */
-    top: 20%;
-    left: 10rem;
-    /* margin-bottom: 20px
-px
-; */
-  }
-}
-
-@media only screen and (max-width: 480px) and (min-width: 320px) {
-  .center-label {
-    position: absolute;
-    margin-bottom: 15px;
-    top: 8em;
-    left: 3em;
+    position: relative;
   }
   .center-label .logo img {
     margin-left: 7rem;
@@ -170,9 +139,11 @@ px
     display: flex;
     width: 17rem;
   }
+  .input-boxes .form-select {
+    width: 100%;
+  }
   .suggestions {
     position: absolute;
-    /* right: 0; */
     font-size: small;
     width: 16rem;
   }

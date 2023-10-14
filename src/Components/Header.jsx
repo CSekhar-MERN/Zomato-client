@@ -429,63 +429,7 @@ const Header = () => {
         </div>
 
         <div className="login-modal">
-          {/* <div>
-
-            <form onSubmit={handleSignupForm}>
-            <div>
-              <h2>Sign Up</h2>
-              <div className="row mb-3"></div>
-              <label>Name: </label>
-              <input
-                type="text"
-                name="username"
-                placeholder="Name"
-                className="email"
-                onChange={handleChange}
-                value={formData.username}
-                required
-              />
-              <br />
-              <label>Email: </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                className="email"
-                onChange={handleChange}
-                value={formData.email}
-                required
-              />
-              <br />
-              <label>Password: </label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                className="pass"
-                onChange={handleChange}
-                value={formData.password}
-                minLength="8"
-                required
-              />
-              <br />
-              <label>Confirm Password: </label>
-              <input
-                type="password"
-                name="confirmpassword"
-                placeholder="Confirm Password"
-                className="pass"
-                onChange={handleChange}
-                value={formData.confirmpassword}
-                minLength="8"
-                required
-                />
-              <br />
-              <button type="submit">Sign Up</button>
-          </div>
-            </form>
-          </div> */}
-
+         
           <div className="container">
             <form onSubmit={handleSignupForm}>
               <div>

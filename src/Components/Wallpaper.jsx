@@ -96,22 +96,22 @@ const Wallpaper = () => {
   };
 
   return (
-    <div>
-      <Header />
-      <div className="img-fluid img">
-        <img src="./Assets/zomato.avif" className="img-fluid" alt="img Error" />
-      </div>
+<div>
+  <Header />
+  <div className="img-fluid img">
+    <img src="./Assets/zomato.avif" className="img-fluid" alt="img Error" />
+  </div>
 
-      <div className="center-label ">
-        <div className="logo">
-          <img src="./Assets/icon.jpg" alt="" />
-        </div>
+  <div className="d-flex justify-content-center align-items-center flex-column main">
+    <div className="center-label text-center">
+      {/* <div className="logo">
+        <img src="./Assets/icon.jpg" alt="" />
+      </div> */}
+      <h2 style={{ color: "#fff" }} className="h2">
+        Find the best restaurants, cafes & bars
+      </h2>
 
-        <h2 style={{ color: "#fff" }} className="h2">
-          Find the best restaurants, cafes & bars
-        </h2>
-
-        <div className="row input-boxes">
+      <div className="row input-boxes">
           <div className="col-lg-4 col-md-6 col-sm-12">
             <select
               name="State"
@@ -119,7 +119,7 @@ const Wallpaper = () => {
               className="form-select"
               aria-label="Default select example"
               onChange={(event) => getLocation(event)}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer"}}
             >
               <option value="0">Select</option>
               {locations.map((location, index) => {
@@ -157,9 +157,27 @@ const Wallpaper = () => {
             </div>
           </div>
         </div>
-      </div>
     </div>
+  </div>
+</div>
+
   );
 };
 
 export default Wallpaper;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

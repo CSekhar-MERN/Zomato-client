@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Header from "./Header";
 import "../Components/Styles/Details.css";
@@ -42,7 +41,7 @@ const menuStyles = {
 function CarouselPage() {
   const [restaurantData, setRestaurantData] = useState([]);
   const [menuItem, setMenuItem] = useState([]);
-  const [content_value, setconten_value] = useState([]);
+  const [content_value, setconten_value] = useState(1);
   const [menumodelIsOpen, setmenumodelIsOpen] = useState(false);
   const [galleryModalIsOpen, setgalleryModalIsOpen] = useState(false);
   const [userModalIsOpen, setuserModalIsOpen] = useState(false);
@@ -146,85 +145,6 @@ function CarouselPage() {
             Click to see Image Gallery{" "}
           </button>
         </div>
-        {/* <Carousel showArrows={true} showThumbs={false}>
-          {restaurantData.thumb &&
-            restaurantData.thumb.map((item, index) => {
-              //console.log('thum items is : '+item)
-              return (
-              <div>
-                <img src={("./"+ item)} alt="not Found" style={{height:'35vh'}}/>
-                <button
-                  className="gallery-button"
-                  onClick={() => {
-                    setgalleryModalIsOpen(true);
-                  }}
-                >
-                  Click to see Image Gallery{" "}
-                </button>
-              </div>
-            )})}
-            </Carousel> */}
-        {/* <div>
-            <img
-              src="./Assets/breakfast.jpg"
-              alt=""
-              srcset=""
-              style={{ height: "15vh", width: "15vw" }}
-            />
-          </div>
-          <div>
-            <img
-              src="./Assets/breakfast.jpg"
-              alt=""
-              srcset=""
-              style={{ height: "15vh", width: "15vw" }}
-            />
-          </div> */}
-
-        {/* <Tabs>
-          <h1 className="restaurant-name">
-            <strong>{restaurantData.name}</strong>
-          </h1>
-          <div className="btn-div">
-            <button className="order-button" onClick={() => handleOrder(true)}>
-              {" "}
-              Place Online Order
-            </button>
-          </div>
-          <TabList>
-            <Tab>Overview</Tab>
-            <Tab>Contact</Tab>
-          </TabList>
-          <TabPanel>
-            <h2>About this place</h2>
-            <br />
-            <h3>Cuisine</h3>
-            {restaurantData.cuisine ? (
-              <p>
-                Bakery:{" "}
-                {restaurantData.cuisine.map((item, index) => (
-                  <span key={index}>
-                    {item.name}
-                    {index !== restaurantData.cuisine.length - 1 ? ", " : ""}
-                  </span>
-                ))}
-              </p>
-            ) : (
-              <p>No cuisine data available</p>
-            )}
-
-            <h3>Average Cost</h3>
-            <p>${restaurantData.min_price} for two people (approx.)</p>
-          </TabPanel>
-          <TabPanel>
-            <h2>Phone Number</h2>
-            <p>{restaurantData.contact_number}</p>
-            <h3>
-              <strong>{restaurantData.name}</strong>
-            </h3>
-            <h5>{restaurantData.locality + ", " + restaurantData.city}</h5>
-          </TabPanel>
-        </Tabs> */}
         <div className="restaurant-name">{restaurantData.name}</div>
         <button className="order-button" onClick={() => handleOrder(true)}>
           {" "}
@@ -293,116 +213,89 @@ function CarouselPage() {
             {restaurantData.locality + ", " + restaurantData.city}
           </div>
         </div>
-
-        <Modal isOpen={menumodelIsOpen} style={menuStyles}>
-          <div
-            style={{ padding: "7px" , cursor:'pointer'}}
-            className="carousel-button"
-            onClick={() => handleOrder(false)}
-          >
-            <i class="fa-solid fa-xmark"></i>
-          </div>
-          <div className="menu-modal">
-            {/* <h1><strong>Menu</strong></h1> */}
-            <div className="container">
-              <div className="restaurant-menu-title">{restaurantData.name}</div>
-
-              {menuItem.map((item, index) => {
-                return (
-                  <div>
+<Modal isOpen={menumodelIsOpen} className="menu-modal">
+  <div className="modal-content" style={{ backgroundColor: "rgb(231, 196, 153)", border: "1px solid rgb(239, 136, 136)" }}>
+    <div className="modal-header">
+      <h5 className="modal-title">{restaurantData.name}</h5>
+      <button type="button" className="btn-close" aria-label="Close" onClick={() => handleOrder(false)} style={{ color: "#000" }}></button>
+    </div>
+    <div className="modal-body">
+      <div className="container">
+        <div className="row">
+          {menuItem.map((item, index) => {
+            return (
+              <div key={index} className="col-md-6 mb-4">
+                <div className="card h-100" style={{ border: "none" }}>
+                  <div className="card-body" style={{ padding: "20px" }}>
                     <div className="green-rectangle">
                       <div className="green-dot"></div>
                     </div>
-                    <div style={{ display: "inline-block" }}>
-                      <div className="Gobi-Manchurian">{item.name}</div>
-                      <div className="menu-price">₹{item.price}</div>
-                      <div className="menu-content">{item.description}</div>
-                    </div>
-
-                    <div
-                      style={{ display: "inline-block", verticalAlign: "top" }}
-                    >
-                      <img
-                        src={item.image_url}
-                        alt=""
-                        height="92"
-                        width="92"
-                        style={{ borderRadius: "10px" }}
-                      />
-                      {item.qty === 0 ? (
-                        <div
-                          className="add-button"
+                    <h5 className="card-title" style={{ fontSize: "24px", fontWeight: "bold" }}>{item.name}</h5>
+                    <h6 className="card-subtitle mb-2 text-muted" style={{ fontSize: "20px", color: "#61b246" }}>₹{item.price}</h6>
+                    <p className="card-text" style={{ fontSize: "16px" }}>{item.description}</p>
+                    <img
+                      src={item.image_url}
+                      alt=""
+                      className="card-img-top"
+                      style={{ borderRadius: "10px", height: "200px", objectFit: "cover" }}
+                    />
+                    {item.qty === 0 ? (
+                      <div className="add-button" onClick={() => addItems(index, "add")} style={{  fontSize: "16px", fontWeight: "bold", cursor: "pointer" }}>
+                        Add
+                      </div>
+                    ) : (
+                      <div className="add-button" style={{display:'flex'}}>
+                        <span
+                          style={{
+                            fontSize: "15px",
+                            color: "grey",
+                            fontWeight: "600",
+                            marginRight: "10px",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => addItems(index, "subtract")}
+                        >
+                          -
+                        </span>
+                        <span style={{ fontSize: "15px", color: "#61b246", fontWeight: "600", marginRight: "10px" }}>
+                          {item.qty}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "15px",
+                            color: "#61b246",
+                            fontWeight: "600",
+                            marginRight: "10px",
+                            cursor: "pointer",
+                          }}
                           onClick={() => addItems(index, "add")}
                         >
-                          Add
-                        </div>
-                      ) : (
-                        <div style={{ textAlign: "center" }}>
-                          <span
-                            style={{
-                              fontSize: "15px",
-                              color: "grey",
-                              fontWeight: "600",
-                              marginRight: "10px",
-                              cursor: "pointer",
-                            }}
-                            onClick={() => addItems(index, "subtract")}
-                          >
-                            -
-                          </span>
-                          <span
-                            style={{
-                              fontSize: "15px",
-                              color: "#61b246",
-                              fontWeight: "600",
-                              marginRight: "10px",
-                            }}
-                          >
-                            {item.qty}
-                          </span>
-                          <span
-                            style={{
-                              fontSize: "15px",
-                              color: "#61b246",
-                              fontWeight: "600",
-                              marginRight: "10px",
-                              cursor: "pointer",
-                            }}
-                            onClick={() => addItems(index, "add")}
-                          >
-                            +
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    <div
-                      style={
-                        index === menuItem.length - 1
-                          ? { display: "none" }
-                          : { display: "block" }
-                      }
-                      className="Path-6229"
-                    ></div>
+                          +
+                        </span>
+                      </div>
+                    )}
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
 
-            <div className="Rectangle-3352">
-              <span>SubTotal :</span>
-              <span className="Subtotal-price">&#8377;{SubTotal}</span>
-              {/* <span
-                className="Rectangle-3353"
-                onClick={() => {
-                  setuserModalIsOpen(true);
-                }}
-              > */}
-              <span className="Rectangle-3353">Pay Now</span>
-            </div>
-          </div>
-        </Modal>
-
-        
+<div className="modal-footer">
+  <div className="rectangle-3352">
+    <span>SubTotal :</span>
+    <span className="subtotal-price">&#8377;{SubTotal}</span>
+    {/* <span className="rectangle-3353" onClick={() => setuserModalIsOpen(true)}> */}
+    <span className="rectangle-3353" >
+      Pay Now
+    </span>
+  </div>
+</div>
+  </div>
+</Modal>
+ 
         <Modal
           // isOpen={galleryModalIsOpen}
           style={customStyles}
