@@ -180,7 +180,7 @@
 
 .menu-modal .modal-body {
   max-height: 70vh;
-  overflow-y: auto
+  overflow-y: auto;
 }
 
 /* Hide the scrollbar */
@@ -303,7 +303,6 @@
   }
 }
 
-
 .pay-btn {
   float: right;
   margin-top: 1.5em;
@@ -383,6 +382,11 @@
   }
 }
 @media screen and (max-width: 465px) {
+  .menu-modal {
+    width: 90%;
+    max-width: 90%;
+  }
+
   div.btn-box button {
     margin-right: 50px;
   }
