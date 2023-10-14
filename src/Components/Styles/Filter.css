@@ -212,7 +212,7 @@
   }
   #nav-filter .nav-items {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
   #nav-filter .nav-icon img {
     height: 2rem;

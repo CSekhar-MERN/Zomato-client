@@ -146,9 +146,26 @@
   border: 1px solid rgb(239, 136, 136);
   max-width: 60%;
   width: 60%;
-  max-height: 80%;
+  max-height: 90%;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Hide the scrollbar */
+.menu-modal {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: transparent transparent; /* For Firefox */
+}
+
+/* Hide the scrollbar for WebKit */
+.menu-modal::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Hide the scrollbar for IE and Edge */
+.menu-modal {
+  -ms-overflow-style: none;
 }
 
 .menu-modal .modal-header {
@@ -162,8 +179,25 @@
 }
 
 .menu-modal .modal-body {
-  max-height: 65vh;
-  overflow-y: hidden;
+  max-height: 70vh;
+  overflow-y: auto
+}
+
+/* Hide the scrollbar */
+.menu-modal .modal-body {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: transparent transparent; /* For Firefox */
+}
+
+/* Hide the scrollbar for WebKit */
+.menu-modal .modal-body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Hide the scrollbar for IE and Edge */
+.menu-modal .modal-body {
+  -ms-overflow-style: none;
 }
 
 .menu-modal .card {
