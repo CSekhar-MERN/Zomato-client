@@ -82,8 +82,8 @@ const Wallpaper = () => {
         {suggestions.map((item, index) => (
           <li key={index} onClick={() => selectingRestaurant(item)}>
             {" "}
-            <img src={item.image} alt="" className="suggestion-image" />{" "}
-            {`${item.name} - ${item.locality},${item.city}`}
+            <div><img src={item.image} alt="" className="suggestion-image" /></div><div className="suggestion-name">{" "}
+            {`${item.name} - ${item.city} `}</div>
           </li>
         ))}
       </ul>
@@ -107,7 +107,7 @@ const Wallpaper = () => {
       {/* <div className="logo">
         <img src="./Assets/icon.jpg" alt="" />
       </div> */}
-      <h2 style={{ color: "#fff" }} className="h2">
+      <h2 style={{ color: "#fff", fontWeight:'bold' }} className="h2">
         Find the best restaurants, cafes & bars
       </h2>
 

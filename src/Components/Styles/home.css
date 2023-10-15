@@ -72,11 +72,13 @@ body::-webkit-scrollbar {
 .suggestions {
   /* border: 2px solid black; */
   height: 20vh;
-  width: 25vw;
+  width: 20vw;
   position: absolute;
   top: 4vh;
 }
 li {
+  display: flex;
+  align-items: center;
   list-style: none;
   background-color: lightgray;
   background-image: linear-gradient(90deg, red 20px, lightgray 10px);
@@ -108,9 +110,11 @@ li .suggestion-image {
   width: 3vw;
   height: 5vh;
   border-radius: 10px;
-  margin-right: 4%;
+  /* margin-right: 4%; */
 }
-
+li .suggestion-name{
+padding-left: 4%;
+}
 /* // Mobile Responsiveness */
 
 @media only screen and (min-width: 1000px) {
@@ -120,14 +124,29 @@ li .suggestion-image {
     /* width: 17rem; */
   }
 
-  .input-boxes .mb-3 {
+  /* .input-boxes .mb-3 {
     margin-left: 2em;
+  } */
+}
+@media (min-width: 992px){
+.col-lg-4 {
+    flex: 0 0 auto;
+    width: 45%;
+}
+}
+@media only screen and (max-width: 1320px) and (min-width: 760px){
+  .suggestions {
+    width: 16rem;
   }
 }
-
 @media only screen and (max-width: 760px) and (min-width: 320px) {
   .center-label {
     position: relative;
+    /* border: 2px solid white; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
   }
   .center-label .logo img {
     margin-left: 7rem;
